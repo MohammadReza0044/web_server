@@ -1,8 +1,6 @@
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 
 public class RequestHandler implements Runnable {
@@ -31,7 +29,8 @@ public class RequestHandler implements Runnable {
             if (method.equals("GET")) {
                 handleGet(path, out);
             } else {
-                sendResponse(out, 501, "Not Implemented", "Method Not Implemented");
+                sendResponse(out, 501, "Not Implemented", "text/html", "<h1>501 - Method Not Implemented</h1>");
+
             }
 
         } catch (IOException e) {
@@ -39,36 +38,63 @@ public class RequestHandler implements Runnable {
         }
     }
 
+    private String getContentType(String path) {
+        if (path.endsWith(".html") || path.endsWith(".htm")) return "text/html";
+        if (path.endsWith(".css")) return "text/css";
+        if (path.endsWith(".js")) return "application/javascript";
+        if (path.endsWith(".png")) return "image/png";
+        if (path.endsWith(".jpg") || path.endsWith(".jpeg")) return "image/jpeg";
+        if (path.endsWith(".gif")) return "image/gif";
+        return "application/octet-stream"; // default binary
+    }
+    
+
     private void handleGet(String path, OutputStream out) throws IOException {
-        if (path.equals("/")) path = "/index.html";
+        if (path.equals("/")) {
+            path = "/index.html";  // default file
+        }
     
-        // Normalize path to prevent access outside www
-        Path filePath = Paths.get(WEB_ROOT, path).normalize();
-        File file = filePath.toFile();
-    
-        if (file.exists() && file.isFile()) {
+        File file = new File(WEB_ROOT + path);
+        
+        if (file.exists() && !file.isDirectory()) {
+            String contentType = getContentType(path);
             byte[] content = Files.readAllBytes(file.toPath());
+    
             String header = "HTTP/1.1 200 OK\r\n" +
-                            "Content-Type: text/html\r\n" +
+                            "Content-Type: " + contentType + "\r\n" +
                             "Content-Length: " + content.length + "\r\n" +
+                            "Connection: close\r\n" +
                             "\r\n";
+    
             out.write(header.getBytes());
             out.write(content);
         } else {
-            sendResponse(out, 404, "Not Found", "<h1>404 Not Found</h1>");
+            String body = "<h1>404 Not Found</h1>";
+            String response = "HTTP/1.1 404 Not Found\r\n" +
+                              "Content-Type: text/html\r\n" +
+                              "Content-Length: " + body.length() + "\r\n" +
+                              "Connection: close\r\n" +
+                              "\r\n" +
+                              body;
+            out.write(response.getBytes());
         }
     
         out.flush();
     }
     
     
-
-    private void sendResponse(OutputStream out, int statusCode, String statusText, String body) throws IOException {
+    private void sendResponse(OutputStream out, int statusCode, String statusText, String contentType, String body) throws IOException {
+        byte[] bodyBytes = body.getBytes("UTF-8");
+    
         String response = "HTTP/1.1 " + statusCode + " " + statusText + "\r\n" +
-                          "Content-Type: text/html\r\n" +
-                          "Content-Length: " + body.length() + "\r\n" +
-                          "\r\n" +
-                          body;
-        out.write(response.getBytes());
+                          "Content-Type: " + contentType + "\r\n" +
+                          "Content-Length: " + bodyBytes.length + "\r\n" +
+                          "Connection: close\r\n" +
+                          "\r\n";
+    
+        out.write(response.getBytes("UTF-8"));
+        out.write(bodyBytes);
+        out.flush();
     }
+    
 }
