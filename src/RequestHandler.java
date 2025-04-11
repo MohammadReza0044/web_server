@@ -4,6 +4,7 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -89,55 +90,51 @@ public class RequestHandler implements Runnable {
     }
     
     private void handlePost(String path, BufferedReader in, OutputStream out) throws IOException {
-        // Read and skip headers
-        String line;
-        int contentLength = 0;
-        while ((line = in.readLine()) != null && !line.isEmpty()) {
-            if (line.startsWith("Content-Length:")) {
-                contentLength = Integer.parseInt(line.substring(15).trim());
-            }
+    // Step 1: Read headers
+    String line;
+    int contentLength = 0;
+    while ((line = in.readLine()) != null && !line.isEmpty()) {
+        if (line.startsWith("Content-Length:")) {
+            contentLength = Integer.parseInt(line.substring(15).trim());
         }
-    
-        char[] bodyChars = new char[contentLength];
-        in.read(bodyChars, 0, contentLength);
-        String requestBody = new String(bodyChars);
-    
-        // Parse form data
-        Map<String, String> params = parseFormData(requestBody);
-    
-        // Validate and sanitize
-        Map<String, String> cleanParams = new HashMap<>();
-        boolean valid = true;
-    
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            String key = sanitize(entry.getKey());
-            String value = sanitize(entry.getValue());
-    
-            if (!isValidFormData(key, value)) {
-                valid = false;
-                break;
-            }
-            cleanParams.put(key, value);
-        }
-    
-        if (!valid) {
-            sendResponse(out, 400, "Bad Request", "text/html", "<h1>Invalid input detected.</h1>");
+    }
+
+    // Step 2: Read body
+    char[] bodyChars = new char[contentLength];
+    in.read(bodyChars, 0, contentLength);
+    String requestBody = new String(bodyChars);
+
+    // Step 3: Parse form data
+    Map<String, String> rawParams = parseFormData(requestBody);
+    Map<String, String> cleanParams = new LinkedHashMap<>();
+
+    // Step 4: Validate and sanitize
+    for (Map.Entry<String, String> entry : rawParams.entrySet()) {
+        String key = entry.getKey();
+        String value = entry.getValue();
+
+        if (!isValidFormData(key, value)) {
+            sendResponse(out, 400, "Bad Request", "text/html", "<h1>400 Bad Request</h1><p>Invalid input detected.</p>");
             return;
         }
-    
-        // Build HTML response
-        StringBuilder responseHtml = new StringBuilder("<html><body><h1>Form Submission Received</h1><ul>");
-        for (Map.Entry<String, String> entry : cleanParams.entrySet()) {
-            responseHtml.append("<li>").append(entry.getKey()).append(": ").append(entry.getValue()).append("</li>");
-        }
-        responseHtml.append("</ul></body></html>");
-    
-        // Save submission to file
-        saveSubmissionToFile(cleanParams);
-    
-        // Respond to client
-        sendResponse(out, 200, "OK", "text/html", responseHtml.toString());
+
+        // Sanitize only after validation passes
+        cleanParams.put(sanitize(key), sanitize(value));
     }
+
+    // Step 5: Save to file
+    saveSubmissionToFile(cleanParams);
+
+    // Step 6: Prepare and send response
+    StringBuilder responseHtml = new StringBuilder("<html><body><h1>Form Submission Received</h1><ul>");
+    for (Map.Entry<String, String> entry : cleanParams.entrySet()) {
+        responseHtml.append("<li>").append(entry.getKey()).append(": ").append(entry.getValue()).append("</li>");
+    }
+    responseHtml.append("</ul></body></html>");
+
+    sendResponse(out, 200, "OK", "text/html", responseHtml.toString());
+}
+
     
 
 
@@ -165,8 +162,13 @@ public class RequestHandler implements Runnable {
     }
     
     private boolean isValidFormData(String key, String value) {
-        return key.matches("^[a-zA-Z0-9_]{1,30}$") && value.length() <= 100;
+        return key != null && value != null &&
+               !key.trim().isEmpty() && !value.trim().isEmpty() &&
+               key.length() < 100 && value.length() < 100 &&
+               !key.contains("<") && !value.contains("<") &&
+               !key.contains(">") && !value.contains(">");
     }
+    
     
     private Map<String, String> parseFormData(String data) {
         Map<String, String> result = new HashMap<>();
