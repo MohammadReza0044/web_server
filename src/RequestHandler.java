@@ -1,6 +1,10 @@
 import java.io.*;
 import java.net.Socket;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RequestHandler implements Runnable {
@@ -28,10 +32,12 @@ public class RequestHandler implements Runnable {
 
             if (method.equals("GET")) {
                 handleGet(path, out);
+            } else if (method.equals("POST")) {
+                handlePost(path, in, out); 
             } else {
-                sendResponse(out, 501, "Not Implemented", "text/html", "<h1>501 - Method Not Implemented</h1>");
-
+                sendResponse(out, 501, "Not Implemented", "text/html", "Method Not Implemented");
             }
+            
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,7 +88,59 @@ public class RequestHandler implements Runnable {
         out.flush();
     }
     
+    private void handlePost(String path, BufferedReader in, OutputStream out) throws IOException {
+        // Read and skip headers
+        String line;
+        int contentLength = 0;
+        while ((line = in.readLine()) != null && !line.isEmpty()) {
+            if (line.startsWith("Content-Length:")) {
+                contentLength = Integer.parseInt(line.substring(15).trim());
+            }
+        }
     
+        char[] bodyChars = new char[contentLength];
+        in.read(bodyChars, 0, contentLength);
+        String requestBody = new String(bodyChars);
+    
+        // Parse form data
+        Map<String, String> params = parseFormData(requestBody);
+    
+        // Validate and sanitize
+        Map<String, String> cleanParams = new HashMap<>();
+        boolean valid = true;
+    
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            String key = sanitize(entry.getKey());
+            String value = sanitize(entry.getValue());
+    
+            if (!isValidFormData(key, value)) {
+                valid = false;
+                break;
+            }
+            cleanParams.put(key, value);
+        }
+    
+        if (!valid) {
+            sendResponse(out, 400, "Bad Request", "text/html", "<h1>Invalid input detected.</h1>");
+            return;
+        }
+    
+        // Build HTML response
+        StringBuilder responseHtml = new StringBuilder("<html><body><h1>Form Submission Received</h1><ul>");
+        for (Map.Entry<String, String> entry : cleanParams.entrySet()) {
+            responseHtml.append("<li>").append(entry.getKey()).append(": ").append(entry.getValue()).append("</li>");
+        }
+        responseHtml.append("</ul></body></html>");
+    
+        // Save submission to file
+        saveSubmissionToFile(cleanParams);
+    
+        // Respond to client
+        sendResponse(out, 200, "OK", "text/html", responseHtml.toString());
+    }
+    
+
+
     private void sendResponse(OutputStream out, int statusCode, String statusText, String contentType, String body) throws IOException {
         byte[] bodyBytes = body.getBytes("UTF-8");
     
@@ -96,5 +154,56 @@ public class RequestHandler implements Runnable {
         out.write(bodyBytes);
         out.flush();
     }
+
+    private String sanitize(String input) {
+        return input
+            .replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace("\"", "&quot;")
+            .replace("'", "&#x27;");
+    }
+    
+    private boolean isValidFormData(String key, String value) {
+        return key.matches("^[a-zA-Z0-9_]{1,30}$") && value.length() <= 100;
+    }
+    
+    private Map<String, String> parseFormData(String data) {
+        Map<String, String> result = new HashMap<>();
+        String[] pairs = data.split("&");
+    
+        for (String pair : pairs) {
+            String[] keyValue = pair.split("=", 2); // limit = 2 in case value contains '='
+            if (keyValue.length == 2) {
+                String key = URLDecoder.decode(keyValue[0], StandardCharsets.UTF_8);
+                String value = URLDecoder.decode(keyValue[1], StandardCharsets.UTF_8);
+                result.put(key, value);
+            }
+        }
+    
+        return result;
+    }
+    
+
+    private void saveSubmissionToFile(Map<String, String> data) {
+        // Ensure the submissions directory exists
+        File dir = new File("submissions");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+    
+        // Create a unique filename (e.g., based on timestamp)
+        String filename = "submissions/submission_" + System.currentTimeMillis() + ".txt";
+        File file = new File(filename);
+    
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (Map.Entry<String, String> entry : data.entrySet()) {
+                writer.write(entry.getKey() + ": " + entry.getValue() + "\n");
+            }
+        } catch (IOException e) {
+            System.err.println("Error saving submission: " + e.getMessage());
+        }
+    }
+    
     
 }
