@@ -1,7 +1,6 @@
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -72,23 +71,33 @@ public class FormHandler {
     }
 
     public static void saveToFile(Map<String, String> data) {
-        File dir = new File("submissions");
-        if (!dir.exists()) {
-            dir.mkdir();
-            dir.setReadable(false, false);   // no one can read
-            dir.setExecutable(false, false); // no one can list
-            dir.setWritable(true, true);     // only server user can write
-        }
+    try {
+        // Start a new process to run IsolatedFormSaver
+        ProcessBuilder pb = new ProcessBuilder("java", "-cp", "out", "IsolatedFormSaver");
+        Process process = pb.start();
 
-        String filename = "submissions/submission_" + System.currentTimeMillis() + ".txt";
-        File file = new File(filename);
+        // Send form data to the subprocess through stdin
+        try (BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(process.getOutputStream()))) {
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Map.Entry<String, String> entry : data.entrySet()) {
-                writer.write(entry.getKey() + ": " + entry.getValue() + "\n");
+                writer.write(entry.getKey() + "=" + entry.getValue());
+                writer.newLine();
             }
-        } catch (IOException e) {
-            System.err.println("Error saving submission: " + e.getMessage());
+            writer.flush();
         }
+
+        // Wait for the process to finish
+        int exitCode = process.waitFor();
+        if (exitCode != 0) {
+            Logger.log(Logger.Level.ERROR, "IsolatedFormSaver exited with code " + exitCode);
+        } else {
+            Logger.log(Logger.Level.INFO, "Form data saved via IsolatedFormSaver.");
+        }
+
+    } catch (IOException | InterruptedException e) {
+        Logger.log(Logger.Level.ERROR, "ProcessBuilder exception: " + e.getMessage());
     }
+}
+
 }
