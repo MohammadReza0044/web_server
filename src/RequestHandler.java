@@ -23,7 +23,7 @@ public class RequestHandler implements Runnable {
             if (requestLine == null || requestLine.isEmpty()) return;
 
             System.out.println("Request: " + requestLine);
-            Logger.log("info", "Request from " + socket.getInetAddress() + " - " + requestLine);
+            Logger.log(Logger.Level.INFO, "Request from " + socket.getInetAddress() + " - " + requestLine);
 
 
             String[] tokens = requestLine.split(" ");
@@ -35,13 +35,13 @@ public class RequestHandler implements Runnable {
             } else if (method.equals("POST")) {
                 handlePost(path, in, out); 
             } else {
-                Logger.log("suspicious", "Unsupported HTTP method: " + method);
+                Logger.log(Logger.Level.WARN, "Unsupported HTTP method from " + socket.getInetAddress() + ": " + method);
                 sendResponse(out, 501, "Not Implemented", "text/html", "Method Not Implemented");
             }
             
 
         } catch (IOException e) {
-            Logger.log("error", "Exception in request handling: " + e.getMessage());
+            Logger.log(Logger.Level.ERROR, "IOException occurred: " + e.getMessage());
             e.printStackTrace();
         }
     }

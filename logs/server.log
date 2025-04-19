@@ -1,3 +1,5 @@
-[2025-04-19T15:28:48.484648911] Request from /0:0:0:0:0:0:0:1 - GET /index.html HTTP/1.1
-[2025-04-19T15:29:03.612760586] Request from /0:0:0:0:0:0:0:1 - GET /sd.html HTTP/1.1
-[2025-04-19T15:29:21.754210632] Request from /127.0.0.1 - POST /form.html HTTP/1.1
+[2025-04-19T15:44:24.986268410] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /sd.html HTTP/1.1
+[2025-04-19T15:44:52.399441460] [INFO] Request from /127.0.0.1 - POST /form.html HTTP/1.1
+[2025-04-19T15:44:52.449526681] [WARN] Unusual input detected but passed validation: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+[2025-04-19T15:45:34.305626755] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /form.html HTTP/1.1
+[2025-04-19T15:45:40.335109203] [INFO] Request from /0:0:0:0:0:0:0:1 - POST /form.html HTTP/1.1

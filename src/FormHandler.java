@@ -31,19 +31,19 @@ public class FormHandler {
     
         // Reject if too long
         if (key.length() > 100 || value.length() > 100) {
-            Logger.log("suspicious", "Length violation: key='" + key + "' (" + key.length() + "), value='" + value + "' (" + value.length() + ")");
+            Logger.log(Logger.Level.WARN, "Unusual input detected: " + value);
             return false;
         }
     
         // Reject if empty
         if (key.isEmpty() || value.isEmpty()) {
-            Logger.log("suspicious", "Empty field detected: key='" + key + "', value='" + value + "'");
+            Logger.log(Logger.Level.WARN, "Unusual input detected: " + value);
             return false;
         }
     
         // Reject path traversal
         if (value.contains("..") || key.contains("..")) {
-            Logger.log("suspicious", "Path traversal attempt: key='" + key + "', value='" + value + "'");
+            Logger.log(Logger.Level.WARN, "Unusual input detected: " + value);
             return false;
         }
     
@@ -51,7 +51,7 @@ public class FormHandler {
         String[] dangerousPatterns = {"<script>", "</script>", "javascript:", "$(", "`", ";", "|", "&", "&&", "||", "$"};
         for (String pattern : dangerousPatterns) {
             if (key.contains(pattern) || value.contains(pattern)) {
-                Logger.log("suspicious", "Blocked pattern '" + pattern + "' in input: key='" + key + "', value='" + value + "'");
+                Logger.log(Logger.Level.WARN, "Unusual input detected: " + value);
                 return false;
             }
         }
