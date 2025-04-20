@@ -9,3 +9,100 @@
 [2025-04-19T15:54:18.455520354] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /form.html HTTP/1.1
 [2025-04-19T15:54:22.222193177] [INFO] Request from /0:0:0:0:0:0:0:1 - POST /form.html HTTP/1.1
 [2025-04-19T15:54:22.225626257] [WARN] Unusual input detected: name=$(python3 -c 'print("a"*500)')
+[2025-04-20T22:35:23.635805189] [INFO] 'www/' directory permissions updated (read-only).
+[2025-04-20T22:35:23.791107130] [INFO] Server started on port 8080
+[2025-04-20T22:35:47.609850885] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-20T22:35:47.629200140] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /index.html HTTP/1.1
+[2025-04-20T22:35:47.635998611] [DEBUG] Parsed method: GET, path: /index.html
+[2025-04-20T22:35:47.711221400] [INFO] Served file: www/index.html (text/html)
+[2025-04-20T22:36:14.927050976] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-20T22:36:14.929974620] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /for.html HTTP/1.1
+[2025-04-20T22:36:14.930612488] [DEBUG] Parsed method: GET, path: /for.html
+[2025-04-20T22:36:14.935031736] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-20T22:36:14.985842910] [WARN] File not found: www/for.html
+[2025-04-20T22:36:25.105764157] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /form.html HTTP/1.1
+[2025-04-20T22:36:25.106207765] [DEBUG] Parsed method: GET, path: /form.html
+[2025-04-20T22:36:25.300377689] [INFO] Served file: www/form.html (text/html)
+[2025-04-20T22:36:29.194681746] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-20T22:36:29.199569784] [INFO] Request from /0:0:0:0:0:0:0:1 - POST /form.html HTTP/1.1
+[2025-04-20T22:36:29.201011954] [DEBUG] Parsed method: POST, path: /form.html
+[2025-04-20T22:36:29.201883743] [INFO] Handling POST request to: /form.html
+[2025-04-20T22:36:29.204015637] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-20T22:36:29.211680190] [DEBUG] Raw form data: name=name%3D%24%28python3+-c+%27print%28%22ahmagh%22*500%29%27%29
+[2025-04-20T22:36:29.229381356] [DEBUG] Parsed form field: name = name=$(python3 -c 'print("ahmagh"*500)')
+[2025-04-20T22:36:29.236403038] [DEBUG] 🔍 Validating form data...
+[2025-04-20T22:36:29.248706756] [DEBUG] 👉 Field: name, Length: 40
+[2025-04-20T22:36:29.258546055] [WARN] Suspicious pattern '$(' detected in input: key='name', value='name=$(python3 -c 'print("ahmagh"*500)')'
+[2025-04-20T22:36:29.268972630] [WARN] ❌ Rejected input: name=name=$(python3 -c 'print("ahmagh"*500)')
+[2025-04-20T22:36:29.381040454] [INFO] Response sent: 400 Bad Request (text/html, 54 bytes)
+[2025-04-20T22:36:44.074140468] [INFO] Request from /0:0:0:0:0:0:0:1 - POST /form.html HTTP/1.1
+[2025-04-20T22:36:44.074647933] [DEBUG] Parsed method: POST, path: /form.html
+[2025-04-20T22:36:44.074878824] [INFO] Handling POST request to: /form.html
+[2025-04-20T22:36:44.075213495] [DEBUG] Raw form data: name=name%3D%24%28python3+-c+%27print%28%22ahmagh%22*500%29%27%29
+[2025-04-20T22:36:44.075556773] [DEBUG] Parsed form field: name = name=$(python3 -c 'print("ahmagh"*500)')
+[2025-04-20T22:36:44.075770525] [DEBUG] 🔍 Validating form data...
+[2025-04-20T22:36:44.076035844] [DEBUG] 👉 Field: name, Length: 40
+[2025-04-20T22:36:44.076304185] [WARN] Suspicious pattern '$(' detected in input: key='name', value='name=$(python3 -c 'print("ahmagh"*500)')'
+[2025-04-20T22:36:44.076559138] [WARN] ❌ Rejected input: name=name=$(python3 -c 'print("ahmagh"*500)')
+[2025-04-20T22:36:44.076933387] [INFO] Response sent: 400 Bad Request (text/html, 54 bytes)
+[2025-04-20T22:36:44.101843582] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-20T22:36:51.634188008] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /form.html HTTP/1.1
+[2025-04-20T22:36:51.634689716] [DEBUG] Parsed method: GET, path: /form.html
+[2025-04-20T22:36:51.641122841] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-20T22:36:51.637658462] [INFO] Served file: www/form.html (text/html)
+[2025-04-20T22:36:54.335865685] [WARN] Empty request received from /0:0:0:0:0:0:0:1
+[2025-04-20T22:36:57.131114659] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-20T22:36:57.133205523] [INFO] Request from /0:0:0:0:0:0:0:1 - POST /form.html HTTP/1.1
+[2025-04-20T22:36:57.139674117] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-20T22:36:57.133924800] [DEBUG] Parsed method: POST, path: /form.html
+[2025-04-20T22:36:57.147233274] [INFO] Handling POST request to: /form.html
+[2025-04-20T22:36:57.152048947] [DEBUG] Raw form data: name=ghasem
+[2025-04-20T22:36:57.154516679] [DEBUG] Parsed form field: name = ghasem
+[2025-04-20T22:36:57.155001198] [DEBUG] 🔍 Validating form data...
+[2025-04-20T22:36:57.155556086] [DEBUG] 👉 Field: name, Length: 6
+[2025-04-20T22:36:57.157779579] [DEBUG] Valid input: key='name', value='ghasem'
+[2025-04-20T22:36:57.162786225] [DEBUG] Sanitized input: 'name' => 'name'
+[2025-04-20T22:36:57.167066174] [DEBUG] Sanitized input: 'ghasem' => 'ghasem'
+[2025-04-20T22:36:57.627369123] [INFO] Form data saved via IsolatedFormSaver.
+[2025-04-20T22:36:57.628644365] [INFO] Form data saved successfully.
+[2025-04-20T22:36:57.633786662] [INFO] Response sent: 200 OK (text/html, 89 bytes)
+[2025-04-20T22:37:13.594137469] [DEBUG] Accepted connection from /127.0.0.1
+[2025-04-20T22:37:13.604888626] [INFO] Request from /127.0.0.1 - POST /form.html HTTP/1.1
+[2025-04-20T22:37:13.606196732] [DEBUG] Parsed method: POST, path: /form.html
+[2025-04-20T22:37:13.607717834] [INFO] Handling POST request to: /form.html
+[2025-04-20T22:37:13.615331694] [DEBUG] Raw form data: name=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+[2025-04-20T22:37:13.633703342] [DEBUG] Parsed form field: name = aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+[2025-04-20T22:37:13.642908713] [DEBUG] 🔍 Validating form data...
+[2025-04-20T22:37:13.644177853] [DEBUG] 👉 Field: name, Length: 500
+[2025-04-20T22:37:13.694425450] [WARN] Input too long: key='name' (4), value='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' (500)
+[2025-04-20T22:37:13.695607496] [WARN] ❌ Rejected input: name=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+[2025-04-20T22:37:13.699281921] [INFO] Response sent: 400 Bad Request (text/html, 54 bytes)
+[2025-04-20T22:37:53.847590386] [DEBUG] Accepted connection from /127.0.0.1
+[2025-04-20T22:37:53.850421964] [INFO] Request from /127.0.0.1 - POST /form.html HTTP/1.1
+[2025-04-20T22:37:53.851167884] [DEBUG] Parsed method: POST, path: /form.html
+[2025-04-20T22:37:53.852206668] [INFO] Handling POST request to: /form.html
+[2025-04-20T22:37:53.852726891] [DEBUG] Raw form data: username=Reza
+[2025-04-20T22:37:53.853202961] [DEBUG] Parsed form field: username = Reza
+[2025-04-20T22:37:53.853676360] [DEBUG] 🔍 Validating form data...
+[2025-04-20T22:37:53.854213742] [DEBUG] 👉 Field: username, Length: 4
+[2025-04-20T22:37:53.855225175] [DEBUG] Valid input: key='username', value='Reza'
+[2025-04-20T22:37:53.855771664] [DEBUG] Sanitized input: 'username' => 'username'
+[2025-04-20T22:37:53.857567856] [DEBUG] Sanitized input: 'Reza' => 'Reza'
+[2025-04-20T22:37:54.016483975] [INFO] Form data saved via IsolatedFormSaver.
+[2025-04-20T22:37:54.018824031] [INFO] Form data saved successfully.
+[2025-04-20T22:37:54.035521346] [INFO] Response sent: 200 OK (text/html, 91 bytes)
+[2025-04-20T22:37:56.053545531] [WARN] Empty request received from /0:0:0:0:0:0:0:1
+[2025-04-20T22:38:57.649993639] [DEBUG] Accepted connection from /127.0.0.1
+[2025-04-20T22:39:16.471295253] [INFO] Request from /127.0.0.1 - index.html
+[2025-04-20T22:39:16.472809310] [WARN] Malformed HTTP request from /127.0.0.1: index.html
+[2025-04-20T22:39:16.474691111] [INFO] Response sent: 400 Bad Request (text/html, 49 bytes)
+[2025-04-20T22:39:52.226747866] [DEBUG] Accepted connection from /127.0.0.1
+[2025-04-20T22:39:54.615252791] [WARN] Empty request received from /127.0.0.1
+[2025-04-20T22:40:48.988658949] [DEBUG] Accepted connection from /127.0.0.1
+[2025-04-20T22:41:09.220276426] [INFO] Request from /127.0.0.1 - GET / HTTP/1.1
+[2025-04-20T22:41:09.220620356] [DEBUG] Parsed method: GET, path: /
+[2025-04-20T22:41:09.221732346] [INFO] Served file: www/index.html (text/html)
+[2025-04-20T22:41:54.542377317] [DEBUG] Accepted connection from /127.0.0.1
+[2025-04-20T22:41:57.113294006] [INFO] Request from /127.0.0.1 - GET /form.html HTTP/1.1
+[2025-04-20T22:41:57.113975236] [DEBUG] Parsed method: GET, path: /form.html
+[2025-04-20T22:41:57.123769697] [INFO] Served file: www/form.html (text/html)
