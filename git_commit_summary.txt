@@ -1,0 +1,8 @@
+0606684 | 2025-04-20 22:44:53 +0100 | try-catch blocks have been updated in all methods.
+890379f | 2025-04-19 15:55:03 +0100 | isolation has been implemented.
+bdaab13 | 2025-04-19 15:47:53 +0100 | logs levels updated.
+50fd977 | 2025-04-19 15:30:41 +0100 | inpul validation has been updated. every request for server and suspicious requests logs are done.
+e2158e8 | 2025-04-11 20:47:50 +0100 | input validations updated.
+1fcb614 | 2025-04-11 20:39:38 +0100 | input validations are done in post method for form submission.
+1b48e83 | 2025-04-11 14:36:57 +0100 | dynamic content type are ok. response in terminal is done.
+367c425 | 2025-04-11 12:10:19 +0100 | initial project.. GET method is ok.

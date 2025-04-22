@@ -106,3 +106,54 @@
 [2025-04-20T22:41:57.113294006] [INFO] Request from /127.0.0.1 - GET /form.html HTTP/1.1
 [2025-04-20T22:41:57.113975236] [DEBUG] Parsed method: GET, path: /form.html
 [2025-04-20T22:41:57.123769697] [INFO] Served file: www/form.html (text/html)
+[2025-04-20T22:45:35.104041579] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-20T22:45:35.109284374] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /test2.png HTTP/1.1
+[2025-04-20T22:45:35.110235125] [DEBUG] Parsed method: GET, path: /test2.png
+[2025-04-20T22:45:35.112285288] [INFO] Served file: www/test2.png (image/png)
+[2025-04-20T22:45:35.115022841] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T11:59:21.972620364] [INFO] 'www/' directory permissions updated (read-only).
+[2025-04-22T11:59:22.134004974] [INFO] Server started on port 8080
+[2025-04-22T12:00:03.752877914] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:00:03.761206377] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:00:03.780215139] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /form.html HTTP/1.1
+[2025-04-22T12:00:03.787295252] [DEBUG] Parsed method: GET, path: /form.html
+[2025-04-22T12:00:03.934969353] [INFO] Served file: www/form.html (text/html)
+[2025-04-22T12:00:05.736513759] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /favicon.ico HTTP/1.1
+[2025-04-22T12:00:05.736937456] [DEBUG] Parsed method: GET, path: /favicon.ico
+[2025-04-22T12:00:05.766121253] [WARN] File not found: www/favicon.ico
+[2025-04-22T12:00:14.678445571] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:00:14.679995736] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /index.html HTTP/1.1
+[2025-04-22T12:00:14.680408990] [DEBUG] Parsed method: GET, path: /index.html
+[2025-04-22T12:00:14.681089187] [INFO] Served file: www/index.html (text/html)
+[2025-04-22T12:00:14.692950479] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:00:19.681185849] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /index.htmll HTTP/1.1
+[2025-04-22T12:00:19.682618606] [DEBUG] Parsed method: GET, path: /index.htmll
+[2025-04-22T12:00:19.683632524] [WARN] File not found: www/index.htmll
+[2025-04-22T12:00:19.848055735] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:00:42.642895708] [WARN] Empty request received from /0:0:0:0:0:0:0:1
+[2025-04-22T12:03:57.002203761] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:03:57.006185778] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /test/text.txt HTTP/1.1
+[2025-04-22T12:03:57.008866126] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:03:57.012452822] [DEBUG] Parsed method: GET, path: /test/text.txt
+[2025-04-22T12:03:57.017068975] [INFO] Served file: www/test/text.txt (text/plain)
+[2025-04-22T12:04:07.169952664] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /test/text2.txt HTTP/1.1
+[2025-04-22T12:04:07.170387582] [DEBUG] Parsed method: GET, path: /test/text2.txt
+[2025-04-22T12:04:07.170780603] [WARN] File not found: www/test/text2.txt
+[2025-04-22T12:04:07.174281341] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:04:14.433384558] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /test HTTP/1.1
+[2025-04-22T12:04:14.433850884] [DEBUG] Parsed method: GET, path: /test
+[2025-04-22T12:04:14.434171070] [WARN] File not found: www/test
+[2025-04-22T12:04:14.440683248] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:04:18.881610949] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /test/text.txt HTTP/1.1
+[2025-04-22T12:04:18.882067964] [DEBUG] Parsed method: GET, path: /test/text.txt
+[2025-04-22T12:04:18.882699601] [INFO] Served file: www/test/text.txt (text/plain)
+[2025-04-22T12:04:18.886346626] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:04:23.611563795] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /test/ HTTP/1.1
+[2025-04-22T12:04:23.612048431] [DEBUG] Parsed method: GET, path: /test/
+[2025-04-22T12:04:23.612596824] [WARN] File not found: www/test
+[2025-04-22T12:04:23.616839685] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:04:32.361776392] [INFO] Request from /0:0:0:0:0:0:0:1 - GET /test/ HTTP/1.1
+[2025-04-22T12:04:32.362240498] [DEBUG] Parsed method: GET, path: /test/
+[2025-04-22T12:04:32.362640645] [WARN] File not found: www/test
+[2025-04-22T12:04:32.368298228] [DEBUG] Accepted connection from /0:0:0:0:0:0:0:1
+[2025-04-22T12:05:50.811431837] [WARN] Empty request received from /0:0:0:0:0:0:0:1
